@@ -29,6 +29,7 @@
           :data="nav.data"
           :props="nav.defaultProps"
           :filter-node-method="navFilterNode"
+          @node-click="handleNavClick"
           ref="tree"
           v-slot="{ node }">
           <span class="custom-tree-node">
@@ -40,14 +41,14 @@
       <el-container>
         <el-main>
           <!-- TAB标签页 -->
-          <el-tabs v-model="tabsValue" type="card" editable @edit="handleTabsEdit">
+          <el-tabs v-model="tabsValue" type="card" closable @tab-remove="removeTab">
             <el-tab-pane
               :key="item.name"
               v-for="item in tabs"
               :label="item.title"
               :name="item.name"
             >
-              {{item.content}}
+              <component :is="item.component" v-if="item.component"></component>
             </el-tab-pane>
           </el-tabs>
         </el-main>
@@ -70,16 +71,16 @@ export default {
         filterText: '',
         data: [{
           id: 1,
-          label: '一级 1',
+          label: '修改器',
           children: [{
             id: 4,
-            label: '二级 1-1',
+            label: 'PC',
             children: [{
               id: 9,
-              label: '三级 1-1-1'
+              label: 'test'
             }, {
               id: 10,
-              label: '三级 1-1-2'
+              label: 'test2'
             }]
           }]
         }],
@@ -93,11 +94,9 @@ export default {
       tabs: [{
         title: 'Tab 1',
         name: '1',
-        content: 'Tab 1 content'
       }, {
         title: 'Tab 2',
         name: '2',
-        content: 'Tab 2 content'
       }],
       tabIndex: 2
     }
@@ -112,35 +111,49 @@ export default {
     },
 
     /**
-     * 标签页编辑
+     * 导航节点点击
      */
-    handleTabsEdit(targetName, action) {
-      if (action === 'add') {
-        const newTabName = ++this.tabIndex + ''
-        this.tabs.push({
-          title: 'New Tab',
-          name: newTabName,
-          content: 'New Tab content'
-        })
-        this.tabsValue = newTabName
-      }
-      if (action === 'remove') {
-        const tabs = this.tabs
-        let activeName = this.tabsValue
-        if (activeName === targetName) {
-          tabs.forEach((tab, index) => {
-            if (tab.name === targetName) {
-              const nextTab = tabs[index + 1] || tabs[index - 1]
-              if (nextTab) {
-                activeName = nextTab.name
-              }
-            }
-          })
+    handleNavClick(data/* , node, component */) {
+      if (!data.children) {
+        console.log(data)
+        const component = window.require('test-lib.umd.min')
+        const newItem = {
+          title: component.name,
+          name: component.name,
+          component,
         }
-
-        this.tabsValue = activeName
-        this.tabs = tabs.filter(tab => tab.name !== targetName)
+        this.tabs.push(newItem)
+        this.tabsValue = newItem.name
       }
+    },
+
+    /**
+     * 添加标签页
+     */
+    addTab(data) {
+      this.tabs.push(data)
+      this.tabsValue = data.name
+    },
+
+    /**
+     * 移除标签页
+     */
+    removeTab(targetName) {
+      const tabs = this.tabs
+      let activeName = this.tabsValue
+      if (activeName === targetName) {
+        tabs.forEach((tab, index) => {
+          if (tab.name === targetName) {
+            const nextTab = tabs[index + 1] || tabs[index - 1]
+            if (nextTab) {
+              activeName = nextTab.name
+            }
+          }
+        })
+      }
+
+      this.tabsValue = activeName
+      this.tabs = tabs.filter(tab => tab.name !== targetName)
     }
   },
   watch: {

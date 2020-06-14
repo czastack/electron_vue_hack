@@ -33,7 +33,7 @@
           ref="tree"
           v-slot="{ node }">
           <span class="custom-tree-node">
-            <i class="el-icon-date"></i>
+            <!-- <i class="el-icon-date"></i> -->
             <span>{{ node.label }}</span>
           </span>
         </el-tree>
@@ -51,6 +51,9 @@
               <component :is="item.component" v-if="item.component"></component>
             </el-tab-pane>
           </el-tabs>
+
+          <hello-world />
+
         </el-main>
         <!-- 底部 -->
         <el-footer>Footer</el-footer>
@@ -61,7 +64,7 @@
 
 <script>
 // @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
+import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
   name: 'Home',
@@ -162,7 +165,7 @@ export default {
     }
   },
   components: {
-
+    HelloWorld,
   }
 }
 </script>

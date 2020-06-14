@@ -1,15 +1,30 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <i class="el-icon-edit"></i>
+    <el-form ref="form" :model="form" label-width="80px">
+      <grid :cap="10" :cols="2">
+        <model-input label="HP" />
+        <model-input label="HP" />
+      </grid>
+    </el-form>
   </div>
 </template>
 
 <script>
+import ModelInput from '@/components/model-widgets/model-input.vue'
+
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  data() {
+    return {
+      form: {},
+    }
+  },
+  components: {
+    ModelInput,
   }
 }
 </script>

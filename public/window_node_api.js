@@ -6,16 +6,11 @@
   if (!window.require) {
     return
   }
-  const NODE = {
-    require,
-    path: require('path'),
-    electron: require('electron'),
-    fs: require('fs'),
-    fsPromises: require('fs').promises,
-  }
+  const path = require('path')
+  const electron = require('electron')
 
-  NODE.appPath = NODE.electron.remote.app.getAppPath()
-  module.paths.unshift(NODE.path.join(NODE.appPath, 'dist'))
+  const appPath = electron.remote.app.getAppPath()
+  module.paths.unshift(path.join(appPath, 'dist'))
 
-  Object.assign(window, NODE)
+  window.appPath = appPath
 })()

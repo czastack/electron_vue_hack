@@ -3,8 +3,9 @@
     <h1>{{ msg }}</h1>
     <el-form ref="form" :model="form" label-width="80px">
       <grid :cap="10" :cols="2">
-        <model-input label="输入1" />
-        <model-select label="输入2" :options="$options.options" />
+        <model-input label="输入" />
+        <model-input-number label="计数器" />
+        <model-select label="选择" :options="$options.options" />
         <model-switch label="Switch" />
       </grid>
     </el-form>

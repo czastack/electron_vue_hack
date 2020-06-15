@@ -12,9 +12,7 @@ export default {
     }
   },
   methods: {
-    viewProps() {
-      return null
-    }
+
   },
 }
 </script>

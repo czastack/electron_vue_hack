@@ -5,6 +5,7 @@
       <el-button-group class="button-rw">
         <el-button size="mini" @click="onread">r</el-button>
         <el-button size="mini" @click="onwrite" v-if="!readonly">w</el-button>
+        <slot name="extra-button"></slot>
       </el-button-group>
     </div>
   </el-form-item>
@@ -64,17 +65,18 @@ export default {
 }
 </script>
 
-<style>
+<style scoped lang="scss">
 .widget-wrap {
   display: flex;
   align-items: center;
-}
 
-.model-view {
-  width: 100%;
+  .model-view {
+    width: 100%;
+  }
 }
 
 .button-rw {
   flex-shrink: 0;
+  margin-left: 8px;
 }
 </style>

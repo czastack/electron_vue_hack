@@ -1,16 +1,9 @@
 <script>
 import modelWidget from './model-widget.vue'
-import modelView from './model-input-view.vue'
-
-/* const modelView = {
-  inheritAttrs: false,
-  render() {
-    return (<el-input attrs={this.$attrs}></el-input>)
-  }
-} */
+import modelView from './model-input-number-view.vue'
 
 export default {
-  name: 'model-input',
+  name: 'model-input-number',
   extends: modelWidget,
   modelView,
   data() {

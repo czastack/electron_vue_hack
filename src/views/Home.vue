@@ -188,6 +188,7 @@ export default {
 
   .el-image {
     cursor: pointer;
+    height: 100%;
   }
 }
 .nav-left {

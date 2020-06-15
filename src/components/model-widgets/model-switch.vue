@@ -1,24 +1,20 @@
 <script>
 import modelWidget from './model-widget.vue'
-import modelView from './model-select-view.vue'
+import modelView from './model-switch-view.vue'
 
 export default {
-  name: 'model-select',
+  name: 'model-switch',
   extends: modelWidget,
   modelView,
-  props: ['options'],
   data() {
     return {
-      value: '',
+      value: false,
     }
   },
   methods: {
     viewProps() {
-      return {
-        selectAttrs: null,
-        options: this.options
-      }
-    },
+      return null
+    }
   },
 }
 </script>

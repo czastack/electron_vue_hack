@@ -10,7 +10,9 @@ import modelView from './model-input-view.vue'
 } */
 
 export default {
+  name: 'model-input',
   extends: modelWidget,
+  modelView,
   data() {
     return {
 
@@ -24,9 +26,6 @@ export default {
       return null
     }
   },
-  components: {
-    modelView,
-  }
 }
 </script>
 

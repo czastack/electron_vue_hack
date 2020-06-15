@@ -5,14 +5,17 @@
       <grid :cap="10" :cols="2">
         <model-input label="输入1" />
         <model-select label="输入2" :options="$options.options" />
+        <model-switch label="Switch" />
       </grid>
     </el-form>
   </div>
 </template>
 
 <script>
-import ModelInput from '@/components/model-widgets/model-input.vue'
-import ModelSelect from '@/components/model-widgets/model-select.vue'
+import Vue from 'vue'
+import ModelWidgets from '@/components/model-widgets'
+
+Vue.use(ModelWidgets)
 
 export default {
   name: 'HelloWorld',
@@ -40,10 +43,6 @@ export default {
       form: {},
     }
   },
-  components: {
-    ModelInput,
-    ModelSelect,
-  }
 }
 </script>
 

@@ -1,5 +1,5 @@
 <template functional>
-  <el-select v-bind="props.selectAttrs" v-on="listeners" :value="props.value" @change="listeners.input">
+  <el-select v-bind="props.selectAttrs" v-on="listeners" :value="data.model.value" @change="listeners.input" :class="[data.staticClass, data.class]">
     <el-option
       v-for="item in props.options"
       :key="item.value"

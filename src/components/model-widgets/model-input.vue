@@ -13,7 +13,7 @@ export default {
   extends: modelWidget,
   data() {
     return {
-      value: 1,
+
     }
   },
   methods: {
@@ -21,7 +21,7 @@ export default {
       console.log('onread2')
     },
     viewProps() {
-      return { value: 1 }
+      return null
     }
   },
   components: {

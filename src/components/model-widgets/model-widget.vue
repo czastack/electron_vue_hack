@@ -1,7 +1,7 @@
 <template>
   <el-form-item :label="label" size="mini">
     <div class="widget-wrap">
-      <model-view v-bind="viewProps()" />
+      <model-view v-bind="viewProps()" v-model="value" class="model-view" />
       <el-button-group class="button-rw">
         <el-button size="mini" @click="onread">r</el-button>
         <el-button size="mini" @click="onwrite" v-if="!readonly">w</el-button>
@@ -15,6 +15,11 @@ export default {
   props: {
     label: String,
     readonly: Boolean,
+  },
+  data() {
+    return {
+      value: '',
+    }
   },
   methods: {
     onread() {
@@ -33,6 +38,10 @@ export default {
 <style>
 .widget-wrap {
   display: flex;
+}
+
+.model-view {
+  width: 100%;
 }
 
 .button-rw {

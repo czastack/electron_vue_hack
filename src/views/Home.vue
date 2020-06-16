@@ -18,7 +18,7 @@
     </el-header>
     <el-container>
       <!-- 左侧导航栏 -->
-      <el-aside class="nav-left">
+      <el-aside class="nav-left" v-show="nav.show">
         <el-input
           placeholder="输入关键字进行过滤"
           v-model="nav.filterText">
@@ -71,10 +71,11 @@ export default {
   data() {
     return {
       nav: {
+        show: true,
         filterText: '',
         data: [{
           id: 1,
-          label: '修改器',
+          label: '测试',
           children: [{
             id: 4,
             label: 'PC',
@@ -193,7 +194,7 @@ export default {
 }
 .nav-left {
   border-right: 1px solid #e6e6e6;
-  padding: 8px;
+  padding: 20px;
 
   .filter-tree {
     margin-top: 15px;

@@ -2,7 +2,7 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <el-form ref="form" :model="form" label-width="80px">
-      <grid :cap="10" :cols="2">
+      <grid :cap="10" :cols="2" class="grid-reactive">
         <model-input label="输入" />
         <model-input-number label="计数器" :attrs="{min: 0}" />
         <model-select label="选择" :options="$options.options" />
@@ -53,5 +53,10 @@ export default {
 <style scoped lang="scss">
 h3 {
   margin: 40px 0 0;
+}
+@media screen and (max-width: 1200px) {
+  .grid-reactive {
+    grid-template-columns: 1fr!important;
+  }
 }
 </style>

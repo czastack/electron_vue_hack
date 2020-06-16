@@ -4,7 +4,7 @@
     <el-form ref="form" :model="form" label-width="80px">
       <grid :cap="10" :cols="2">
         <model-input label="输入" />
-        <model-input-number label="计数器" />
+        <model-input-number label="计数器" :attrs="{min: 0}" />
         <model-select label="选择" :options="$options.options" />
         <model-switch label="Switch" />
       </grid>

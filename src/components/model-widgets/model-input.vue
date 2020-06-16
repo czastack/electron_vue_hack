@@ -1,18 +1,16 @@
-<script>
-import modelWidget from './model-widget.vue'
-import modelView from './model-input-view.vue'
+<template>
+  <model-widget-layout>
+    <el-input class="model-view" v-model="value" v-bind="attrs" v-on="listeners"></el-input>
+    <template v-for="(_, slot) of $scopedSlots" v-slot:[slot]="scope"><slot :name="slot" v-bind="scope"/></template>
+  </model-widget-layout>
+</template>
 
-/* const modelView = {
-  inheritAttrs: false,
-  render() {
-    return (<el-input attrs={this.$attrs}></el-input>)
-  }
-} */
+<script>
+import modelWidget from './model-widget.js'
 
 export default {
-  name: 'model-input',
   extends: modelWidget,
-  modelView,
+  name: 'model-input',
   data() {
     return {
 

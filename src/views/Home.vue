@@ -18,25 +18,17 @@
     </el-header>
     <el-container>
       <!-- 左侧导航栏 -->
-      <el-aside class="nav-left" v-show="nav.show">
-        <el-input
-          placeholder="输入关键字进行过滤"
-          v-model="nav.filterText">
-        </el-input>
-
-        <el-tree
-          class="filter-tree"
-          :data="nav.data"
-          :props="nav.defaultProps"
-          :filter-node-method="navFilterNode"
-          @node-click="handleNavClick"
-          ref="tree"
-          v-slot="{ node }">
-          <span class="custom-tree-node">
-            <!-- <i class="el-icon-date"></i> -->
-            <span>{{ node.label }}</span>
-          </span>
-        </el-tree>
+      <el-aside class="aside-left" :class="{'aside-collapse': asideTabHide}">
+        <el-tabs tab-position="left" class="aside-left-tabs" ref="asideTabs" @tab-click="asideTabClick">
+          <el-tab-pane label="tools">
+            <span slot="label"><i class="el-icon-document"></i></span>
+            <aside-tools />
+          </el-tab-pane>
+          <el-tab-pane label="test">
+            <span slot="label"><i class="el-icon-reading"></i></span>
+            <div>test</div>
+          </el-tab-pane>
+        </el-tabs>
       </el-aside>
       <el-container>
         <el-main>
@@ -65,35 +57,19 @@
 <script>
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
+import AsideTools from './home/aside-tools.vue'
 
 export default {
   name: 'Home',
+  provide() {
+    return {
+      home: this,
+    }
+  },
   data() {
     return {
-      nav: {
-        show: true,
-        filterText: '',
-        data: [{
-          id: 1,
-          label: '测试',
-          children: [{
-            id: 4,
-            label: 'PC',
-            children: [{
-              id: 9,
-              label: 'test'
-            }, {
-              id: 10,
-              label: 'test2'
-            }]
-          }]
-        }],
-        defaultProps: {
-          children: 'children',
-          label: 'label'
-        }
-      },
-
+      asideTabHide: false,
+      asideTabLast: '0',
       tabsValue: '2',
       tabs: [{
         title: 'Tab 1',
@@ -107,30 +83,19 @@ export default {
   },
   methods: {
     /**
-     * 侧边导航栏过滤
+     * 侧栏tab点击
      */
-    navFilterNode(value, data) {
-      if (!value) return true
-      return data.label.indexOf(value) !== -1
-    },
-
-    /**
-     * 导航节点点击
-     */
-    handleNavClick(data/* , node, component */) {
-      if (!data.children) {
-        console.log(data)
-        const component = window.require('test-lib.umd.min')
-        const newItem = {
-          title: component.name,
-          name: component.name,
-          component,
+    asideTabClick(tab, event) {
+      if (this.asideTabLast !== tab.index) {
+        this.asideTabLast = tab.index
+        if (this.asideTabHide) {
+          this.asideTabHide = false
         }
-        this.tabs.push(newItem)
-        this.tabsValue = newItem.name
+      } else {
+        // 显示隐藏侧栏
+        this.asideTabHide = !this.asideTabHide
       }
     },
-
     /**
      * 添加标签页
      */
@@ -160,13 +125,9 @@ export default {
       this.tabs = tabs.filter(tab => tab.name !== targetName)
     }
   },
-  watch: {
-    'nav.filterText': function (value) {
-      this.$refs.tree.filter(value)
-    }
-  },
   components: {
     HelloWorld,
+    AsideTools,
   }
 }
 </script>
@@ -192,12 +153,23 @@ export default {
     height: 100%;
   }
 }
-.nav-left {
+.aside-left {
   border-right: 1px solid #e6e6e6;
-  padding: 20px;
+  padding: 20px 20px 0 0;
 
-  .filter-tree {
-    margin-top: 15px;
+  .aside-left-tabs {
+    height: 100%;
+  }
+  &.aside-collapse {
+    width: auto!important;
+    padding: 20px 0 0 0;
+
+    .el-tabs__header {
+      margin-right: 0!important;
+    }
+    .el-tabs__content {
+      display: none;
+    }
   }
 }
 </style>

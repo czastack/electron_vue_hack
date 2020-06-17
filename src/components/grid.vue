@@ -62,4 +62,9 @@ export default {
 .grid {
   display: grid;
 }
+@media screen and (max-width: 1200px) {
+  .grid-reactive {
+    grid-template-columns: 1fr!important;
+  }
+}
 </style>

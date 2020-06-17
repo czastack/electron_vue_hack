@@ -21,11 +21,11 @@
       <el-aside class="aside-left" :class="{'aside-collapse': asideTabHide}">
         <el-tabs tab-position="left" class="aside-left-tabs" ref="asideTabs" @tab-click="asideTabClick">
           <el-tab-pane label="tools">
-            <span slot="label"><i class="el-icon-document"></i></span>
+            <template #label><i class="el-icon-document"></i></template>
             <aside-tools />
           </el-tab-pane>
           <el-tab-pane label="test">
-            <span slot="label"><i class="el-icon-reading"></i></span>
+            <template #label><i class="el-icon-reading"></i></template>
             <div>test</div>
           </el-tab-pane>
         </el-tabs>

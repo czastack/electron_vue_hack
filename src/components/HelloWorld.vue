@@ -1,16 +1,14 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <el-form ref="form" :model="form" label-width="80px">
-      <grid :cap="10" :cols="2" class="grid-reactive">
-        <model-input label="输入" />
-        <model-input-number label="计数器" :attrs="{min: 0}" />
-        <model-select label="选择" :options="$options.options" />
-        <model-flags label="标志位" :labels="['a', 'b', 'c']" />
-        <model-switch label="Switch" />
-        <model-checkbox label="Checkbox" />
-      </grid>
-    </el-form>
+    <model-group>
+      <model-input label="输入" />
+      <model-input-number label="计数器" :attrs="{min: 0}" />
+      <model-select label="选择" :options="$options.options" />
+      <model-flags label="标志位" :labels="['a', 'b', 'c']" />
+      <model-switch label="Switch" />
+      <model-checkbox label="Checkbox" />
+      <model-coord label="Coord" />
+    </model-group>
   </div>
 </template>
 
@@ -43,7 +41,7 @@ export default {
   }],
   data() {
     return {
-      form: {},
+
     }
   },
 }
@@ -53,10 +51,5 @@ export default {
 <style lang="scss" scoped>
 h3 {
   margin: 40px 0 0;
-}
-@media screen and (max-width: 1200px) {
-  .grid-reactive {
-    grid-template-columns: 1fr!important;
-  }
 }
 </style>

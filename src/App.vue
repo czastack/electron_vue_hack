@@ -19,4 +19,8 @@ body {
 #app {
   height: 100%;
 }
+
+.flex-grow-1 {
+  flex-grow: 1;
+}
 </style>

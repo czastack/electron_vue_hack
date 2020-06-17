@@ -80,7 +80,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .aside-tree {
   margin-top: 15px;
 }

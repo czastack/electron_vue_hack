@@ -63,7 +63,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
   .widget-wrap .checkAll {
     margin-right: 30px;
   }

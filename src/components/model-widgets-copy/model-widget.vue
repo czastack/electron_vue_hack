@@ -65,7 +65,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .widget-wrap {
   display: flex;
   align-items: center;

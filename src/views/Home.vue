@@ -33,10 +33,10 @@
       <el-container>
         <el-main>
           <!-- TAB标签页 -->
-          <el-tabs v-model="tabsValue" type="card" closable @tab-remove="removeTab">
+          <el-tabs ref="tabs" v-model="tabsValue" type="card" closable @tab-remove="removeTab">
             <el-tab-pane
-              :key="item.name"
               v-for="item in tabs"
+              :key="item.name"
               :label="item.title"
               :name="item.name"
             >
@@ -78,7 +78,6 @@ export default {
         title: 'Tab 2',
         name: '2',
       }],
-      tabIndex: 2
     }
   },
   methods: {
@@ -100,6 +99,9 @@ export default {
      * 添加标签页
      */
     addTab(data) {
+      if (!data.name) {
+        data.name = (this.$refs.tabs.panes.length + 1).toString()
+      }
       this.tabs.push(data)
       this.tabsValue = data.name
     },

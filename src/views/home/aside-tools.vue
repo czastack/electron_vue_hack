@@ -65,7 +65,7 @@ export default {
         const component = window.require('test-lib.umd.min')
         const newItem = {
           title: component.name,
-          name: component.name,
+          // name: component.name,
           component,
         }
         this.home.addTab(newItem)

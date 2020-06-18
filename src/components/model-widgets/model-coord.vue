@@ -2,7 +2,7 @@
   <el-form-item :label="label" size="mini" class="model-coord">
     <div class="model-view model-coord-content">
       <div class="flex-grow-1">
-        <el-form ref="form" label-position="left" label-width="50px">
+        <el-form ref="form" label-position="left" label-width="60px">
           <el-form-item label="名称" size="mini">
             <el-input v-model="name"></el-input>
           </el-form-item>
@@ -55,6 +55,9 @@ export default {
 .model-coord {
   .model-coord-content {
     display: flex;
+  }
+  .el-form-item--mini.el-form-item {
+    margin-bottom: 8px;
   }
   select {
     width: 200px;

@@ -4,6 +4,7 @@
       <model-input label="输入" />
       <model-input-number label="计数器" :attrs="{min: 0}" />
       <model-select label="选择" :options="$options.options" />
+      <model-select-count label="选择数量" :options="$options.options" />
       <model-flags label="标志位" :labels="['a', 'b', 'c']" />
       <model-switch label="Switch" />
       <model-checkbox label="Checkbox" />

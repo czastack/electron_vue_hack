@@ -1,23 +1,34 @@
 <template>
   <div class="hello">
-    <model-group>
-      <model-input label="输入" />
-      <model-input-number label="计数器" :attrs="{min: 0}" />
-      <model-select label="选择" :options="$options.options" />
-      <model-select-count label="选择数量" :options="$options.options" />
-      <model-flags label="标志位" :labels="['a', 'b', 'c']" />
-      <model-switch label="Switch" />
-      <model-checkbox label="Checkbox" />
-      <model-coord label="Coord" />
-    </model-group>
+    <hack-tool ref="hacktool">
+      <model-group-tab label="全局">
+        <model-input label="输入" />
+        <model-input-number label="计数器" :attrs="{min: 0}" />
+        <model-select label="选择" :options="$options.options" />
+        <model-select-count label="选择数量" :options="$options.options" />
+        <model-flags label="标志位" :labels="['a', 'b', 'c']" />
+        <model-switch label="Switch" />
+        <model-checkbox label="Checkbox" />
+      </model-group-tab>
+      <model-group-tab label="位置">
+        <model-coord label="Coord" />
+        <template #footer-button>
+          111
+        </template>
+      </model-group-tab>
+    </hack-tool>
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
+import HackTools from '@/components/hack-tools'
 import ModelWidgets from '@/components/model-widgets'
-import fs from 'fs'
+import ModelGroupTab from '@/components/model-widgets/model-group-tab'
 
+console.log(ModelGroupTab)
+
+Vue.use(HackTools)
 Vue.use(ModelWidgets)
 
 export default {
@@ -44,7 +55,7 @@ export default {
     }
   ],
   created() {
-    console.log(fs)
+
   },
   data() {
     return {

@@ -6,17 +6,23 @@
   if (!window.require) {
     return
   }
-  const fs = require('fs')
-  const path = require('path')
   const electron = require('electron')
-
   const appPath = electron.remote.app.getAppPath()
-  module.paths.unshift(path.join(appPath, 'dist'))
-
-  Object.assign(window, {
-    fs,
-    path,
+  const externals = {
     electron,
     appPath,
-  })
+  }
+  const modules = [
+    'events',
+    'fs',
+    'os',
+    'path',
+    'child_process',
+  ]
+  for (const item of modules) {
+    externals[item] = require(item)
+  }
+
+  Object.assign(window, externals)
+  module.paths.unshift(process.cwd())
 })()

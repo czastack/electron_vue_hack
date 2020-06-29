@@ -12,9 +12,6 @@
       </model-group-tab>
       <model-group-tab label="位置">
         <model-coord label="Coord" />
-        <template #footer-button>
-          111
-        </template>
       </model-group-tab>
     </hack-tool>
   </div>

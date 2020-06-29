@@ -1,6 +1,6 @@
 <template>
   <model-widget-layout>
-    <el-select class="model-view" v-model="value" v-bind="attrs" v-on="listeners">
+    <el-select class="model-view" v-model="value" v-bind="attrs" v-on="listeners" filterable>
       <el-option
         v-for="item in options"
         :key="item.value"
